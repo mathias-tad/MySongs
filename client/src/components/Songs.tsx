@@ -55,7 +55,8 @@ const Songs: React.FC<SongsProps> = ({ songs }) => {
           return (
             song.title?.toLowerCase().includes(searchTerm) ||
             song.artistName?.toLowerCase().includes(searchTerm) ||
-            song.album?.toLowerCase().includes(searchTerm)
+            song.album?.toLowerCase().includes(searchTerm) ||
+            song.genre?.toLowerCase().includes(searchTerm)
           );
         })
       );
@@ -201,7 +202,7 @@ const Songs: React.FC<SongsProps> = ({ songs }) => {
                 >
                   Genre:{" "}
                 </span>{" "}
-                {song.genre}
+                {highlightMatch(song.genre, searchString)}
               </p>
               <p>{song.duration}</p>
               <MdDelete
