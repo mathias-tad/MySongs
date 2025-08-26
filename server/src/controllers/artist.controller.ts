@@ -263,22 +263,42 @@ export const updateSong = async (req: Request, res: Response) => {
             return res.status(404).json({ error: 'Song not found' });
         }
         let songToUpdate: ITrack | undefined;
+        let albumToUpdate: IAlbum | undefined;
         const { title, duration, genre, artistName, albumTitle } = req.body;
         if (!id || !title || !genre || !artistName || !albumTitle) {
             return res.status(400).json({ error: 'All fields are required' });
         }
         artist.albums?.forEach(album => {
             songToUpdate = album.tracks?.find(track => track._id?.toString() === id);
+            if (songToUpdate) albumToUpdate = album;
         });
         //console.log(songToUpdate);
         if (!songToUpdate) {
             return res.status(404).json({ error: 'Song not found' });
         }
         //console.log(req.file);
-        if (req.file) {
-            if (songToUpdate.publicId) {
-                await cloudinary.uploader.destroy(songToUpdate.publicId, { resource_type: 'video' });
+        let trackToMove: ITrack | undefined;
+        let currentAlbumIndex = -1;
+        let currentTrackIndex = -1;
+
+        artist.albums?.forEach((album, idx) => {
+            const trackIdx = album.tracks!.findIndex(track => track._id?.toString() === id);
+            if (trackIdx !== -1) {
+                currentAlbumIndex = idx;
+                currentTrackIndex = trackIdx;
+                trackToMove = album.tracks![trackIdx];
             }
+        });
+
+        if (!trackToMove) {
+            return res.status(404).json({ error: 'Track not found in albums' });
+        }
+
+        if (req.file) {
+            if (trackToMove.publicId) {
+                await cloudinary.uploader.destroy(trackToMove.publicId, { resource_type: 'video' });
+            }
+
             const streamUpload = () => {
                 return new Promise<any>((resolve, reject) => {
                     const stream = cloudinary.uploader.upload_stream(
@@ -287,36 +307,63 @@ export const updateSong = async (req: Request, res: Response) => {
                             folder: 'songs',
                         },
                         (error, result) => {
-                            if (result) {
-                                resolve(result);
-                            } else {
-                                reject(error);
-                            }
+                            if (result) resolve(result);
+                            else reject(error);
                         }
                     );
-                    if (req.file) {
-                        stream.end(req.file.buffer);
-                    } else {
-                        reject(new Error('No file provided'));
-                    }
+                    stream.end(req.file?.buffer);
                 });
             };
-            const result: any = await streamUpload();
-            songToUpdate.songUrl = result.secure_url;
-            songToUpdate.publicId = result.public_id;
+
+            const result = await streamUpload();
+            trackToMove.songUrl = result.secure_url;
+            trackToMove.publicId = result.public_id;
         }
-        songToUpdate.title = title;
-        const parsedDuration = parseInt(duration, 10);
 
-        songToUpdate.duration = parsedDuration ? parsedDuration : songToUpdate.duration;
-        songToUpdate.genre = genre;
-        //console.log(songToUpdate);
+        trackToMove.title = title;
+        trackToMove.duration = parseInt(duration, 10) || trackToMove.duration;
+        trackToMove.genre = genre;
+
+        if (artist.name === artistName && artist.albums![currentAlbumIndex].title !== albumTitle) {
+            artist.albums![currentAlbumIndex].tracks?.splice(currentTrackIndex, 1);
+
+
+            let newAlbum = artist.albums?.find(a => a.title === albumTitle);
+            if (!newAlbum) {
+                newAlbum = { title: albumTitle, tracks: [] };
+                artist.albums?.push(newAlbum);
+            }
+
+            newAlbum.tracks!.push(trackToMove);
+        }
+        //
+        if (artist.name !== artistName) {
+            if (artist.albums && artist.albums[currentAlbumIndex] && Array.isArray(artist.albums[currentAlbumIndex].tracks && currentAlbumIndex)) {
+                artist.albums[currentAlbumIndex].tracks?.splice(currentTrackIndex, 1);
+            }
+
+            let newArtist = await Artist.findOne({ name: artistName });
+            if (!newArtist) {
+                newArtist = new Artist({ name: artistName, albums: [] });
+            }
+
+            let targetAlbum = newArtist.albums?.find(album => album.title === albumTitle);
+            if (!targetAlbum) {
+                targetAlbum = { title: albumTitle, tracks: [] };
+                newArtist.albums?.push(targetAlbum);
+            }
+            targetAlbum.tracks?.push(trackToMove);
+
+            await newArtist.save();
+        }
+
         await artist.save();
-        return res.status(200).json({ message: 'Song updated successfully' });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ error: 'Failed to update song' });
 
+        return res.status(200).json({ message: 'Song updated successfully' });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Failed to update song' });
     }
 }
 export const updateArtist = async (req: Request, res: Response) => {

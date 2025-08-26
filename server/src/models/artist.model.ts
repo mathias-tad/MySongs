@@ -5,8 +5,8 @@ interface ITrack {
     title: string;
     duration: number; // in seconds
     genre: string;
-    songUrl?: string;
-    publicId?: string;
+    songUrl?: string | null | undefined
+    publicId?: string | null;
 }
 
 interface IAlbum {
