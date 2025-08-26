@@ -328,7 +328,7 @@ function App() {
             padding-right: 20px;
             @media (max-width: 600px) {
               height: calc(100% - 180px);
-              padding-bottom: 100px;
+              padding-bottom: 130px;
             }
             @media (min-width: 601px) and (max-width: 800px) {
               height: calc(100% - 160px);
