@@ -264,7 +264,7 @@ export const updateSong = async (req: Request, res: Response) => {
         }
         let songToUpdate: ITrack | undefined;
         const { title, duration, genre, artistName, albumTitle } = req.body;
-        if (!id || !title || !duration || !genre || !artistName || !albumTitle) {
+        if (!id || !title || !genre || !artistName || !albumTitle) {
             return res.status(400).json({ error: 'All fields are required' });
         }
         artist.albums?.forEach(album => {
