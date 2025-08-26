@@ -309,9 +309,7 @@ export const updateSong = async (req: Request, res: Response) => {
         }
         songToUpdate.title = title;
         const parsedDuration = parseInt(duration, 10);
-        if (isNaN(parsedDuration)) {
-            return res.status(400).json({ error: 'Duration must be a valid number' });
-        }
+
         songToUpdate.duration = parsedDuration ? parsedDuration : songToUpdate.duration;
         songToUpdate.genre = genre;
         //console.log(songToUpdate);
