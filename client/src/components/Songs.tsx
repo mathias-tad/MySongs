@@ -204,7 +204,7 @@ const Songs: React.FC<SongsProps> = ({ songs }) => {
                 </span>{" "}
                 {highlightMatch(song.genre, searchString)}
               </p>
-              <p>{song.duration}</p>
+              <p>{song.duration.toString().split(".")[0]}</p>
               <MdDelete
                 className={css`
                   cursor: pointer;
