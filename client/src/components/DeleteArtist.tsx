@@ -16,9 +16,12 @@ const DeleteArtist = ({ id }: IdProp) => {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:1316/api/deleteArtist/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://mysongs-ylo9.onrender.com/api/deleteArtist/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (res.ok) {
         toast.success("Artist Deleted");
         dispatch(fetchArtistsStart());

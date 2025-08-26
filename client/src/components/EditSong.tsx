@@ -54,7 +54,7 @@ const EditSong: React.FC<SongsProps> = ({ selectedSong }) => {
     }
     try {
       const res = await fetch(
-        `http://localhost:1316/api/updateSong/${selectedSong?._id}`,
+        `https://mysongs-ylo9.onrender.com/api/updateSong/${selectedSong?._id}`,
         {
           method: "PUT",
           body: formData,

@@ -67,7 +67,7 @@ const Artists = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:1316/api/deleteAlbum/${selectedAlbum?._id}`,
+        `https://mysongs-ylo9.onrender.com/api/deleteAlbum/${selectedAlbum?._id}`,
         {
           method: "DELETE",
         }

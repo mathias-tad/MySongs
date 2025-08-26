@@ -43,7 +43,7 @@ function Albums() {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:1316/api/deleteAlbum/${selectedAlbum?._id}`,
+        `https://mysongs-ylo9.onrender.com/api/deleteAlbum/${selectedAlbum?._id}`,
         {
           method: "DELETE",
         }
@@ -98,7 +98,7 @@ function Albums() {
     e.preventDefault();
     let res;
     if (!isEditModalOpen) {
-      res = await fetch("http://localhost:1316/api/createAlbum", {
+      res = await fetch("https://mysongs-ylo9.onrender.com/api/createAlbum", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -112,7 +112,7 @@ function Albums() {
       });
     } else {
       res = await fetch(
-        `http://localhost:1316/api/updateAlbum/${selectedAlbum?._id}`,
+        `https://mysongs-ylo9.onrender.com/updateAlbum/${selectedAlbum?._id}`,
         {
           method: "PUT",
           headers: {

@@ -31,17 +31,20 @@ const AddSong = () => {
     setUploading(true);
     let albumRes;
     if (newAlbum) {
-      albumRes = await fetch("http://localhost:1316/api/createAlbum", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: artistName ? artistName : newArtist,
-          title: albumTitle || newAlbum,
-          releaseDate,
-        }),
-      });
+      albumRes = await fetch(
+        "https://mysongs-ylo9.onrender.com/api/createAlbum",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: artistName ? artistName : newArtist,
+            title: albumTitle || newAlbum,
+            releaseDate,
+          }),
+        }
+      );
       if (!albumRes.ok) {
         toast.error("Failed to Create Song");
         setUploading(false);
@@ -50,10 +53,13 @@ const AddSong = () => {
         return;
       }
     }
-    const res = await fetch("http://localhost:1316/api/createSong", {
-      method: "POST",
-      body: formData,
-    });
+    const res = await fetch(
+      "https://mysongs-ylo9.onrender.com/api/createSong",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
     const resData = await res.json();
     if (res.ok) {
       toast.success(resData.message);

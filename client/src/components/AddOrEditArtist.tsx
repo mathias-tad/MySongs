@@ -35,7 +35,7 @@ const AddOrEditArtist: React.FC<ArtistProp> = ({ artist }) => {
       }
       try {
         const res = await fetch(
-          `http://localhost:1316/api/updateArtist/${artist._id}`,
+          `https://mysongs-ylo9.onrender.com/api/updateArtist/${artist._id}`,
           {
             method: "PUT",
             body: formData,
@@ -55,10 +55,13 @@ const AddOrEditArtist: React.FC<ArtistProp> = ({ artist }) => {
       }
     } else {
       try {
-        const res = await fetch(`http://localhost:1316/api/createArtist`, {
-          method: "POST",
-          body: formData,
-        });
+        const res = await fetch(
+          `https://mysongs-ylo9.onrender.com/api/createArtist`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
 
         const data = await res.json();
         if (res.ok) {

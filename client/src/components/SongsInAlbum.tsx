@@ -74,7 +74,7 @@ const SongsInAlbum = ({ mySelectedAlbum }: { mySelectedAlbum: Album }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:1316/api/deleteSong/${id}`,
+        `https://mysongs-ylo9.onrender.com/api/deleteSong/${id}`,
         {
           method: "DELETE",
         }
