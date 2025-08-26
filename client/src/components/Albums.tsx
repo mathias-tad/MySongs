@@ -352,23 +352,6 @@ function Albums() {
             >
               Delete Album
             </p>
-            <p
-              className={css`
-                font-weight: thinner;
-                margin: 0;
-                &:hover {
-                  color: #446ef8;
-                  cursor: pointer;
-                  text-align: right;
-                }
-              `}
-              onClick={() => {
-                dispatch(setIsEditModalOpen(true));
-                setIsModalOpen(true);
-              }}
-            >
-              Edit Album
-            </p>
           </div>
           <SongsInAlbum mySelectedAlbum={selectedAlbum} />
         </div>
