@@ -268,9 +268,7 @@ export const updateSong = async (req: Request, res: Response) => {
             return res.status(400).json({ error: 'All fields are required' });
         }
         artist.albums?.forEach(album => {
-            if (album.title === albumTitle) {
-                songToUpdate = album.tracks?.find(track => track._id?.toString() === id);
-            }
+            songToUpdate = album.tracks?.find(track => track._id?.toString() === id);
         });
         //console.log(songToUpdate);
         if (!songToUpdate) {
