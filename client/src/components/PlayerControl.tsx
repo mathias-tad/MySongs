@@ -26,7 +26,7 @@ const PlayerControl = () => {
   useEffect(() => {
     if (!audioRef.current) return;
     if (audioRef.current) {
-      audioRef.current.currentTime = currentTime;
+      //audioRef.current.currentTime = currentTime;
       //audioRef.current.src = currentSong?.songUrl || "";
       if (isPlaying) {
         audioRef.current.play().catch(() => {});
@@ -36,8 +36,27 @@ const PlayerControl = () => {
       }
     }
   }, [currentSong, isPlaying]);
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const timeUpdateHandler = () => {
+      dispatch(setCurrentTime(audio?.currentTime));
+    };
+    const loadingHandler = () => {
+      dispatch(setCurrentTime(0));
+    };
+    audio?.addEventListener("loadedmetadata", loadingHandler);
+    audio?.addEventListener("timeupdate", timeUpdateHandler);
+    return () => {
+      audio?.removeEventListener("timeupdate", timeUpdateHandler);
+      audio?.removeEventListener("loadedmetadata", loadingHandler);
+    };
+  }, [audioRef, dispatch]);
 
   const playPauseHandler = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = currentTime;
+    } else return;
     dispatch(setIsPlaying(!isPlaying));
   };
 
@@ -184,6 +203,8 @@ const PlayerControl = () => {
             className={css`
               margin: 0;
               padding: 0;
+              display: flex;
+              align-items: center;
             `}
           >
             {!isPlaying && (
@@ -241,19 +262,23 @@ const PlayerControl = () => {
                 }
               `}
             />
+            <p
+              className={css`
+                text-size: 10px;
+                margin: 0;
+                padding: 3px;
+                padding-left: 10px;
+                font-weight: lighter;
+              `}
+            >
+              {Math.floor(currentTime / 60)}:
+              {Math.floor(currentTime % 60) < 10 ? "0" : ""}
+              {Math.floor(currentTime % 60)}/
+              {currentSong
+                ? currentSong.duration.toString().split(".")[0]
+                : "0:00"}
+            </p>
           </div>
-
-          <p
-            className={css`
-              text-size: 24px;
-              margin: 0;
-              padding: 3px;
-            `}
-          >
-            {/*Math.floor(currentTime / 60)*/}:
-            {/*Math.floor(currentTime % 60) < 10 ? "0" : ""*/}
-            {/*Math.floor(currentTime % 60)*/}
-          </p>
         </div>
       </div>
     </>
