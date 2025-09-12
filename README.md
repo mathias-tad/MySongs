@@ -105,7 +105,3 @@ This will:
 
 - Add user authentication
 - Improve mobile responsiveness
-
-```
-
-```
