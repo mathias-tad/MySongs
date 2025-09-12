@@ -7,7 +7,7 @@ This is a full-stack web App aims to upload, delete, edit, play, search songs an
 This module contains two main directories:
 
 - client/ - frontend (vite + TypeScript)
-- server/ - backend (Node.js + TypeScript)
+- server/ - backend (Node.js + TypeScript, MongoDB for database and Cloudinary storage for storing songs)
 
 ## ✔️ Prerequisites
 
