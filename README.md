@@ -16,11 +16,16 @@ This module contains two main directories:
 - Node.js v22.14
 - npm 11.4
 - Docker installed (if you prefere)
+- MongoDB URI and Cloudinary credentials
 
-## 💻 Runnig the client side
+## 💻 Running the client side
 
 To run the client side change your working directory to "client" folder first
 **cd client**
+
+### npm install
+
+- Install dependencies
 
 ### npm run build
 
@@ -34,6 +39,11 @@ To run the client side change your working directory to "client" folder first
 ## 🖧 Running the server side
 
 To run the server side working directory should be at the root directory (i.e. MySongs/)
+
+```bash
+### npm install
+
+- Install dependencies
 
 ### npx tsc
 
@@ -64,14 +74,15 @@ This will:
 
 ## 🧩 Features of the App
 
-🎶 Upload and manage songs  
-🎧 Play songs directly in the browser  
-🌐 Browse by artists and albums  
-🔍 Search functionality  
-📝 Edit and delete songs, albums and artists  
+🎶 Upload and manage songs
+🎧 Play songs directly in the browser
+🌐 Browse by artists and albums
+🔍 Search functionality
+📝 Edit and delete songs, albums and artists
 🪟 View detailed metadata about songs, albums and artists
 
 ## 🛠️ Future Improvements
 
 - Add user authentication
 - Improve mobile responsiveness
+```
