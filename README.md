@@ -21,18 +21,29 @@ This module contains two main directories:
 ## 💻 Running the client side
 
 To run the client side change your working directory to "client" folder first
-**cd client**
 
-### npm install
+```bash
+cd client
+```
+
+- Changes directory to client/
+
+```bash
+npm install
+```
 
 - Install dependencies
 
-### npm run build
+```bash
+npm run build
+```
 
 - Compile the TypeScript files
 - Outputs optimized assets to the dist/ folder
 
-### npm run preview
+```bash
+npm run preview
+```
 
 - Serves production build at http://localhost:4173/
 
@@ -46,11 +57,15 @@ npm install
 
 - Install dependencies
 
-### npx tsc
+```bash
+npx tsc
+```
 
 - Compiles the TypeScript code of the server side using the TypeScript compiler (tsc) via npx based on the configuration defined in tsconfig.json. It transpiles .ts files to .js
 
-### npm start
+```bash
+npm start
+```
 
 - Runs the server side of the app in the production mode.
 - Open http://localhost:1316 to view it in your browser.
@@ -59,7 +74,9 @@ npm install
 
 From the root of the project (i.e. MySongs/)
 
-### docker build -t mysongs-server .
+```bash
+docker build -t mysongs-server .
+```
 
 This will:
 
@@ -67,7 +84,9 @@ This will:
 - Compiles the TypeScript backend
 - Creates a production ready container
 
-### docker run -p 1316:1316 mysongs-server
+```bash
+docker run -p 1316:1316 mysongs-server
+```
 
 This will:
 
