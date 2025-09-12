@@ -1,4 +1,4 @@
-# MySong for Managing Songs
+# MySongs
 
 This is a full-stack web App aims to upload, delete, edit, play, search songs and get them by artists and albums and get other infos about each songs, albums and artists.
 
