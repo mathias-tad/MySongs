@@ -41,7 +41,8 @@ To run the client side change your working directory to "client" folder first
 To run the server side working directory should be at the root directory (i.e. MySongs/)
 
 ```bash
-### npm install
+npm install
+```
 
 - Install dependencies
 
@@ -85,4 +86,7 @@ This will:
 
 - Add user authentication
 - Improve mobile responsiveness
+
+```
+
 ```
