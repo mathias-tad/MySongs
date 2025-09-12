@@ -4,7 +4,7 @@ This web App aims to upload, delete, edit, play, search songs and get them by ar
 
 This module contains two main directories "server" and "client"
 
-## Runnig the client side
+## 💻 Runnig the client side
 
 To run the client side change your working directory to "client" folder first
 
@@ -17,7 +17,7 @@ Outpust optimized assets to the dist/ folder
 
 Serves production build at https://localhost:4173/
 
-## Running the server side
+## 🖧 Running the server side
 
 To run the server side working directory should be at the root directory (i.e. MySongs/)
 
