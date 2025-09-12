@@ -17,6 +17,7 @@ This module contains two main directories:
 - npm 11.4
 - Docker installed (if you prefere)
 - MongoDB URI and Cloudinary credentials
+- Create .env file at the root as the same as .env.example file with the correct info, not empty string value
 
 ## 💻 Running the client side
 
