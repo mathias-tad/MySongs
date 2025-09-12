@@ -2,7 +2,12 @@
 
 This web App aims to upload, delete, edit, play, search songs and get them by artists and albums and get other infos about each songs, albums and artists.
 
-This module contains two main directories "server" and "client"
+## 📂 Project structure
+
+This module contains two main directories:
+
+- client/ - frontend (vite + TypeScript)
+- server/ - backend (Node.js + TypeScript)
 
 ## 💻 Runnig the client side
 
@@ -13,7 +18,7 @@ To run the client side change your working directory to "client" folder first
 Compile the TypeScript files
 Outpust optimized assets to the dist/ folder
 
-2. npm run preview
+1. npm run preview
 
 Serves production build at https://localhost:4173/
 
