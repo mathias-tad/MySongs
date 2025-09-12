@@ -92,7 +92,7 @@ This will:
 
 - Start the server and map it to http://localhost:1316
 
-![](client/public/fav-icon.svg)
+![](client/public/Screenshot1.png) ![](client/public/Screenshot2.png)
 
 ## 🧩 Features of the App
 
