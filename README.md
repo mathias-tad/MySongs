@@ -1,6 +1,20 @@
 # MySong for Managing Songs
 
-This web App aims to upload, delete, edit, play, search songs and get them by artists and albums and get other infos about each songs, albums and artists.
+This is a full-stack web App aims to upload, delete, edit, play, search songs and get them by artists and albums and get other infos about each songs, albums and artists.
+
+## 🧩 Features of the App
+
+🎶 Upload and manage songs
+🎧 Play songs directly in the browser
+🌐 Browse by artists and albums
+🔍 Search functionality
+📝 Edit and delete songs, albums and artists
+🪟 View detailed metadata about songs, albums and artists
+
+## 🛠️ Future Improvements
+
+- Add user authentication
+- Improve mobile responsiveness
 
 ## 📂 Project structure
 
@@ -12,15 +26,16 @@ This module contains two main directories:
 ## 💻 Runnig the client side
 
 To run the client side change your working directory to "client" folder first
+**cd client**
 
-**1. npm run build**
+### npm run build
 
 - Compile the TypeScript files
-- Outpust optimized assets to the dist/ folder
+- Outputs optimized assets to the dist/ folder
 
-**2. npm run preview**
+### npm run preview
 
-- Serves production build at https://localhost:4173/
+- Serves production build at http://localhost:4173/
 
 ## 🖧 Running the server side
 
@@ -28,9 +43,27 @@ To run the server side working directory should be at the root directory (i.e. M
 
 ### npx tsc
 
-Compiles the TypeScript code of the server side using the TypeScript compiler (tsc) via npx based on the configuration defined in tsconfig.json. It transpiles .ts files to .js
+- Compiles the TypeScript code of the server side using the TypeScript compiler (tsc) via npx based on the configuration defined in tsconfig.json. It transpiles .ts files to .js
 
 ### npm start
 
-Runs the server side of the app in the production mode.
-Open http://localhost:1316 to view it in your browser.
+- Runs the server side of the app in the production mode.
+- Open http://localhost:1316 to view it in your browser.
+
+## Runnig server with docker
+
+From the root of the project (i.e. MySongs/)
+
+### docker build -t mysongs-server .
+
+This will:
+
+- Install dependencies
+- Compiles the TypeScript backend
+- Creates a production ready container
+
+### docker run -p 1316:1316 mysongs-server
+
+This will:
+
+- Start the server and map it to http://localhost:1316
