@@ -4,11 +4,11 @@ This is a full-stack web App aims to upload, delete, edit, play, search songs an
 
 ## 🧩 Features of the App
 
-🎶 Upload and manage songs
-🎧 Play songs directly in the browser
-🌐 Browse by artists and albums
-🔍 Search functionality
-📝 Edit and delete songs, albums and artists
+🎶 Upload and manage songs  
+🎧 Play songs directly in the browser  
+🌐 Browse by artists and albums  
+🔍 Search functionality  
+📝 Edit and delete songs, albums and artists  
 🪟 View detailed metadata about songs, albums and artists
 
 ## 🛠️ Future Improvements
