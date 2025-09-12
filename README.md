@@ -8,12 +8,12 @@ This module contains two main directories "server" and "client"
 
 To run the client side change your working directory to "client" folder first
 
-### npm run build
+1. npm run build
 
 Compile the TypeScript files
 Outpust optimized assets to the dist/ folder
 
-### npm run preview
+2. npm run preview
 
 Serves production build at https://localhost:4173/
 
