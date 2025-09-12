@@ -92,6 +92,8 @@ This will:
 
 - Start the server and map it to http://localhost:1316
 
+![] (client/public/fav-icon.svg)
+
 ## 🧩 Features of the App
 
 🎶 Upload and manage songs  
