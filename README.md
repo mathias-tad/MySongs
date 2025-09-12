@@ -108,4 +108,5 @@ This will:
 
 ## Live Demo
 
-https://my-songs-six.vercel.app
+Frontend: https://my-songs-six.vercel.app
+Backend: deployed on render.com
