@@ -2,26 +2,18 @@
 
 This is a full-stack web App aims to upload, delete, edit, play, search songs and get them by artists and albums and get other infos about each songs, albums and artists.
 
-## 🧩 Features of the App
-
-🎶 Upload and manage songs  
-🎧 Play songs directly in the browser  
-🌐 Browse by artists and albums  
-🔍 Search functionality  
-📝 Edit and delete songs, albums and artists  
-🪟 View detailed metadata about songs, albums and artists
-
-## 🛠️ Future Improvements
-
-- Add user authentication
-- Improve mobile responsiveness
-
 ## 📂 Project structure
 
 This module contains two main directories:
 
 - client/ - frontend (vite + TypeScript)
 - server/ - backend (Node.js + TypeScript)
+
+## ✔️ Prerequisites
+
+- Node.js v22.14
+- npm 11.4
+- Docker installed (if you prefere)
 
 ## 💻 Runnig the client side
 
@@ -50,7 +42,7 @@ To run the server side working directory should be at the root directory (i.e. M
 - Runs the server side of the app in the production mode.
 - Open http://localhost:1316 to view it in your browser.
 
-## Runnig server with docker
+## 🧊 Runnig server with docker
 
 From the root of the project (i.e. MySongs/)
 
@@ -67,3 +59,17 @@ This will:
 This will:
 
 - Start the server and map it to http://localhost:1316
+
+## 🧩 Features of the App
+
+🎶 Upload and manage songs  
+🎧 Play songs directly in the browser  
+🌐 Browse by artists and albums  
+🔍 Search functionality  
+📝 Edit and delete songs, albums and artists  
+🪟 View detailed metadata about songs, albums and artists
+
+## 🛠️ Future Improvements
+
+- Add user authentication
+- Improve mobile responsiveness
