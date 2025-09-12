@@ -92,8 +92,6 @@ This will:
 
 - Start the server and map it to http://localhost:1316
 
-![](client/public/Screenshot1.png) ![](client/public/Screenshot2.png)
-
 ## 🧩 Features of the App
 
 🎶 Upload and manage songs  
@@ -107,3 +105,7 @@ This will:
 
 - Add user authentication
 - Improve mobile responsiveness
+
+## Live Demo
+
+https://my-songs-six.vercel.app
