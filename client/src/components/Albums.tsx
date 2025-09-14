@@ -18,6 +18,7 @@ function Albums() {
   const [coverUrl, setCoverUrl] = useState("");
   const dispatch = useDispatch();
   const artists = useSelector((state: any) => state.artist.artists);
+  const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
   const { loading, isDeleteModalOpen, isEditModalOpen } = useSelector(
     (state: any) => state.artist
   );
@@ -43,7 +44,7 @@ function Albums() {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://mysongs-ylo9.onrender.com/api/deleteAlbum/${selectedAlbum?._id}`,
+        `${serverAddress}/api/deleteAlbum/${selectedAlbum?._id}`,
         {
           method: "DELETE",
         }
@@ -98,7 +99,7 @@ function Albums() {
     e.preventDefault();
     let res;
     if (!isEditModalOpen) {
-      res = await fetch("https://mysongs-ylo9.onrender.com/api/createAlbum", {
+      res = await fetch(`${serverAddress}/api/createAlbum`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,21 +112,18 @@ function Albums() {
         }),
       });
     } else {
-      res = await fetch(
-        `https://mysongs-ylo9.onrender.com/updateAlbum/${selectedAlbum?._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            title,
-            releaseDate,
-            coverUrl,
-          }),
-        }
-      );
+      res = await fetch(`${serverAddress}/updateAlbum/${selectedAlbum?._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          title,
+          releaseDate,
+          coverUrl,
+        }),
+      });
     }
     const data = await res?.json();
     if (res?.ok) {

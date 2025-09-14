@@ -68,17 +68,15 @@ const SongsInAlbum = ({ mySelectedAlbum }: { mySelectedAlbum: Album }) => {
   );
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
   const [selectedSong, setSelectedSong] = useState<Track | null>(null);
+  const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
 
   const handleDelete = async (id: string) => {
     if (!id) return;
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://mysongs-ylo9.onrender.com/api/deleteSong/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${serverAddress}/api/deleteSong/${id}`, {
+        method: "DELETE",
+      });
       if (response.ok) {
         dispatch(fetchArtistsStart());
         dispatch(setIsDeleteSongModalOpen(false));

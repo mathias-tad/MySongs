@@ -37,6 +37,7 @@ const Songs: React.FC<SongsProps> = ({ songs }) => {
   const [loading, setLoading] = useState(false);
   const [songToEdit, setSongToEdit] = useState<Song | null>(null);
   const [filteredSong, setFilteredSong] = useState<Song[] | null>(null);
+  const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
   const { selectedGenre, searchString } = useSelector(
     (state: any) => state.artist
   );
@@ -67,12 +68,9 @@ const Songs: React.FC<SongsProps> = ({ songs }) => {
     if (!id) return;
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://mysongs-ylo9.onrender.com/api/deleteSong/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${serverAddress}/api/deleteSong/${id}`, {
+        method: "DELETE",
+      });
       if (response.ok) {
         dispatch(fetchArtistsStart());
         setIsDeleteModalOpen(false);

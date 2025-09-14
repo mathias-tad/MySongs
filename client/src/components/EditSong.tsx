@@ -30,6 +30,7 @@ const EditSong: React.FC<SongsProps> = ({ selectedSong }) => {
   const [genre, setGenre] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
+  const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
   useEffect(() => {
     if (selectedSong) {
       setArtistName(selectedSong.artistName);
@@ -54,7 +55,7 @@ const EditSong: React.FC<SongsProps> = ({ selectedSong }) => {
     }
     try {
       const res = await fetch(
-        `https://mysongs-ylo9.onrender.com/api/updateSong/${selectedSong?._id}`,
+        `${serverAddress}/api/updateSong/${selectedSong?._id}`,
         {
           method: "PUT",
           body: formData,

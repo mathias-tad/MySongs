@@ -19,6 +19,7 @@ const AddSong = () => {
   const [uploading, setUploading] = useState(false);
   const [releaseDate, setReleaseDate] = useState("");
   const dispatch = useDispatch();
+  const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
   const formData = new FormData();
   formData.append("file", file as Blob);
   formData.append("artistName", artistName || newArtist);
@@ -31,20 +32,17 @@ const AddSong = () => {
     setUploading(true);
     let albumRes;
     if (newAlbum) {
-      albumRes = await fetch(
-        "https://mysongs-ylo9.onrender.com/api/createAlbum",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: artistName ? artistName : newArtist,
-            title: albumTitle || newAlbum,
-            releaseDate,
-          }),
-        }
-      );
+      albumRes = await fetch(`${serverAddress}/api/createAlbum`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: artistName ? artistName : newArtist,
+          title: albumTitle || newAlbum,
+          releaseDate,
+        }),
+      });
       if (!albumRes.ok) {
         toast.error("Failed to Create Song");
         setUploading(false);
@@ -53,13 +51,10 @@ const AddSong = () => {
         return;
       }
     }
-    const res = await fetch(
-      "https://mysongs-ylo9.onrender.com/api/createSong",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const res = await fetch(`${serverAddress}/api/createSong`, {
+      method: "POST",
+      body: formData,
+    });
     const resData = await res.json();
     if (res.ok) {
       toast.success(resData.message);

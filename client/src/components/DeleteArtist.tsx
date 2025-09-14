@@ -12,16 +12,14 @@ interface IdProp {
 const DeleteArtist = ({ id }: IdProp) => {
   const dispatch = useDispatch();
   const [loadding, setLoading] = useState(false);
+  const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
 
   const handleDelete = async () => {
     setLoading(true);
     try {
-      const res = await fetch(
-        `https://mysongs-ylo9.onrender.com/api/deleteArtist/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`${serverAddress}/api/deleteArtist/${id}`, {
+        method: "DELETE",
+      });
       if (res.ok) {
         toast.success("Artist Deleted");
         dispatch(fetchArtistsStart());

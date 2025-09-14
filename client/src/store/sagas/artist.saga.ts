@@ -3,8 +3,9 @@ import { fetchArtistsFailure, fetchArtistsStart, fetchArtistsSuccess } from '../
 import axios from 'axios';
 
 export function* fetchArtistsSaga(): Generator {
+    const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
     try {
-        const response = yield call(axios.get, 'https://mysongs-ylo9.onrender.com/api/getArtist');
+        const response = yield call(axios.get, `${serverAddress}/api/getArtist`);
         yield put(fetchArtistsSuccess(response.data));
     } catch (error: any) {
         yield put(fetchArtistsFailure(error.message));

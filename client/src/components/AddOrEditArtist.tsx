@@ -26,6 +26,7 @@ const AddOrEditArtist: React.FC<ArtistProp> = ({ artist }) => {
   formData.append("file", image as Blob);
   formData.append("name", name);
   const dispatch = useDispatch();
+  const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
@@ -35,7 +36,7 @@ const AddOrEditArtist: React.FC<ArtistProp> = ({ artist }) => {
       }
       try {
         const res = await fetch(
-          `https://mysongs-ylo9.onrender.com/api/updateArtist/${artist._id}`,
+          `${serverAddress}/api/updateArtist/${artist._id}`,
           {
             method: "PUT",
             body: formData,
@@ -55,13 +56,10 @@ const AddOrEditArtist: React.FC<ArtistProp> = ({ artist }) => {
       }
     } else {
       try {
-        const res = await fetch(
-          `https://mysongs-ylo9.onrender.com/api/createArtist`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
+        const res = await fetch(`${serverAddress}/api/createArtist`, {
+          method: "POST",
+          body: formData,
+        });
 
         const data = await res.json();
         if (res.ok) {

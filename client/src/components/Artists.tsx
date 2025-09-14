@@ -58,6 +58,7 @@ const Artists = () => {
   const [artistName, setArtistName] = useState("");
   const dispatch = useDispatch();
   const [loadding, setLoading] = useState(false);
+  const serverAddress = import.meta.env.VITE_SERVER_ADDRESS;
   const { isDeleteArtist, isAddArtist, isEditArtist } = useSelector(
     (state: any) => state.artist
   );
@@ -67,7 +68,7 @@ const Artists = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://mysongs-ylo9.onrender.com/api/deleteAlbum/${selectedAlbum?._id}`,
+        `${serverAddress}/api/deleteAlbum/${selectedAlbum?._id}`,
         {
           method: "DELETE",
         }
