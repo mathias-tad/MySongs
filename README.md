@@ -18,6 +18,7 @@ This module contains two main directories:
 - Docker installed (if you prefere)
 - MongoDB URI and Cloudinary credentials
 - Create .env file at the root as the same as .env.example file with the correct info, not empty string value
+- Create another .env file in client/ directory exact copy of .env.example in client/
 
 ## 💻 Running the client side
 
